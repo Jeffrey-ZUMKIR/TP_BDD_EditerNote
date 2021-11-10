@@ -25,6 +25,7 @@
 		//Connexion à la base
 		$connexion = connect_bd();
 
+		//Change chaque note qui doit etre editer
 		if(isset($_POST["changeNote"])){
 			$post=$_POST;
 			if(!empty($post)){
@@ -42,6 +43,7 @@
 	<?php
 		$note = getNote($connexion);
 
+		//Form des notes possible à modifer
 		echo '<form action="#" method="post" id="formModifNote">
 			<table id="tabNote">
 				<thead>
@@ -61,7 +63,7 @@
 						<td class="colMat">'.$value["lib_matiere"].'</td>
 						<td class="colEtud">'.$value["nom"].' '.$value["prenom"].'</td>
 						<td class="colNote"><input type="number" name="val[]" min="0" max="20" value="'.$value["valeur"].'" disabled required></td>
-						<td class="colEdit"><input type="checkbox" name="idNote[]" value="'.$value["id_note"].'" onchange="changeInputNote()"></td>
+						<td class="colEdit"><input type="checkbox" name="idNote[]" value="'.$value["id_note"].'" onchange="changeInputNote(this)"></td>
 					</tr>';
 			}
 			
@@ -85,8 +87,8 @@
 
 	<?php
 		$moy = getMoyenne($connexion);
-		//var_dump($moy);
-
+		
+		//Tableau des moyennes
 		echo '<table id="tabMoy">
 				<thead>
 					<tr>
@@ -123,14 +125,12 @@
 </div>
 </div>
 	<script type="text/javascript">
+		//Modifie le enabled de l'input number en fonction de si le checkbox est coché
 		function changeInputNote(val){
-			var btnEdit = document.getElementsByName("idNote[]");
-			for (var i = 0; i < btnEdit.length; i++) {
-				if(btnEdit[i].checked == true){
-					btnEdit[i].parentNode.parentNode.querySelector('.colNote').querySelector("input").disabled = false;
-				}else{
-					btnEdit[i].parentNode.parentNode.querySelector('.colNote').querySelector("input").disabled = true;
-				}
+			if(val.checked == true){
+				val.parentNode.parentNode.querySelector('.colNote').querySelector("input").disabled = false;
+			}else{
+				val.parentNode.parentNode.querySelector('.colNote').querySelector("input").disabled = true;
 			}
 		}
 		

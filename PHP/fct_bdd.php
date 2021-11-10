@@ -14,6 +14,7 @@ function connect_bd(){
 	return $connexion;
 }
 
+//Obtenir note d'un élève
 function getNote($connexion){
 	$req = 'SELECT lib_matiere, nom, prenom, valeur, id_note
 			FROM matiere, compte, note
@@ -36,6 +37,7 @@ function getNote($connexion){
 	}
 }
 
+//Modifer note
 function updateNote($connexion, $idnote, $valeur){
 	$req = 'UPDATE note
 			SET valeur = :valeur
@@ -56,6 +58,7 @@ function updateNote($connexion, $idnote, $valeur){
 	}
 }
 
+//Obtenir moyenne des élèves par matiere
 function getMoyenne($connexion){
 	$req = 'SELECT lib_matiere, nom, prenom, ROUND(avg(valeur),2) as moyenne
 			FROM matiere, compte, note
