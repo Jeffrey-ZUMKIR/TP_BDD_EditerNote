@@ -32,6 +32,11 @@
 				for ($i=0; $i < sizeof($post['idNote']); $i++) { 
 					updateNote($connexion, $post['idNote'][$i], $post['val'][$i]);
 				}
+				/*echo '<script>
+						document.getElementById("alertModif").innerHTML = "Modification réussite"
+
+					</script>';*/
+				echo '<p style="color: green; text-align: center; font-weight: bold">Modification réussite</p>';
 			}
 			
 		}
@@ -55,6 +60,7 @@
 					</tr>
 				</thead>
 				<tbody>';
+		//Ajouter une note
 		//Check si le tableau de note existe ou s'il n'est pas vide
 		if(isset($note) and !empty($note)){
 			//Affiche chaque note des élèves
@@ -62,7 +68,7 @@
 				echo '<tr>
 						<td class="colMat">'.$value["lib_matiere"].'</td>
 						<td class="colEtud">'.$value["nom"].' '.$value["prenom"].'</td>
-						<td class="colNote"><input type="number" name="val[]" min="0" max="20" value="'.$value["valeur"].'" disabled required></td>
+						<td class="colNote"><input type="number" name="val[]" min="0" max="20" value="'.$value["valeur"].'" placeholder="'.$value["valeur"].'" disabled required></td>
 						<td class="colEdit"><input type="checkbox" name="idNote[]" value="'.$value["id_note"].'" onchange="changeInputNote(this)"></td>
 					</tr>';
 			}
@@ -83,6 +89,7 @@
 
 	?>
 </div>
+
 <div class="column">
 
 	<?php

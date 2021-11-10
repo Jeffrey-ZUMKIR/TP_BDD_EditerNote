@@ -60,11 +60,13 @@ function updateNote($connexion, $idnote, $valeur){
 
 //Obtenir moyenne des élèves par matiere
 function getMoyenne($connexion){
-	$req = 'SELECT lib_matiere, nom, prenom, ROUND(avg(valeur),2) as moyenne
+	/*$req = 'SELECT lib_matiere, nom, prenom, ROUND(avg(valeur),2) as moyenne
 			FROM matiere, compte, note
 			WHERE matiere.id_matiere = note.id_matiere and compte.id_compte = note.id_compte
 			GROUP BY lib_matiere, nom
-			ORDER BY nom, lib_matiere;';
+			ORDER BY nom, lib_matiere;';*/
+	$req = 'SELECT *
+			FROM moyenne;';
 
 	try{
 		//Préparer et exécuter la requête
