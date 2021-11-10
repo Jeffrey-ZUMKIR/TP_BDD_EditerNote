@@ -1,0 +1,65 @@
+body{
+	background-color:lightgrey;
+}
+
+.column {
+  float: left;
+  width: 49%;
+  
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+table{
+	border-collapse: collapse;
+	box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+tbody tr:nth-child(odd){
+	background-color: lightgreen;
+}
+
+tbody tr:nth-child(even){
+	background-color: lightblue;
+}
+
+tbody tr:hover{
+	background-color: white;
+}
+
+#formModifNote{
+	margin: 0 auto;
+	width: 70%;
+}
+
+
+
+.colMat{
+	width: 30%;
+}
+
+.colEtud{
+	width: 40%;
+}
+
+.colNote{
+	width: 10%;
+}
+
+.colEdit{
+	width: 10%;
+	text-align: center;
+}
+
+#tabMoy{
+	margin: 0 auto;
+	width: 70%;
+}
+
+.colMoy{
+	width: 10%;
+	text-align: right;
+}
