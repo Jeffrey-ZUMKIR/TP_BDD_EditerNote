@@ -131,6 +131,7 @@
 
 	</script>
 	<?php
+		//Get moyenne de chaque élève
 		$moy = getMoyenne($connexion);
 
 		if(isset($moy) and !empty($note)){
@@ -142,27 +143,12 @@
 				echo '	var tr = document.createElement("tr");
 						tbody.appendChild(tr);';
 
-				if($value["moyenne"]>=14){
-					echo 'tr.setAttribute("style", "background-color: #60FF58;");';
-				}else if($value["moyenne"]>=10){
-					echo 'tr.setAttribute("style", "background-color: #FFFC58;");';
-				}else if($value["moyenne"]<10){
-					echo 'tr.setAttribute("style", "background-color: #FF5858;");';
-				}
-				
+				//Set style de la ligne en fonction de la valeur de la moyenne
+				setStyle($value["moyenne"]);
 
 				echo '</script>';
 
-				foreach ($value as $key2 => $value2) {
-					echo '<script>';
-
-					echo '	var td = document.createElement("td");
-							td.innerHTML = "'.$value2.'";
-							tr.appendChild(td);';
-
-
-					echo '</script>';
-				}
+				insertLineMoy($value);
 			}
 			
 		//Si pas de valeur ou n'existe pas
@@ -185,7 +171,7 @@
 	?>
 
 	<?php
-		$moy = getMoyenne($connexion);
+		//$moy = getMoyenne($connexion);
 		
 		//Tableau des moyennes
 		/*echo '<table id="tabMoy">

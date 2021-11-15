@@ -60,13 +60,13 @@ function updateNote($connexion, $idnote, $valeur){
 
 //Obtenir moyenne des élèves par matiere
 function getMoyenne($connexion){
-	/*$req = 'SELECT lib_matiere, nom, prenom, ROUND(avg(valeur),2) as moyenne
+	$req = 'SELECT lib_matiere, nom, prenom, ROUND(avg(valeur),1) as moyenne
 			FROM matiere, compte, note
 			WHERE matiere.id_matiere = note.id_matiere and compte.id_compte = note.id_compte
 			GROUP BY lib_matiere, nom
-			ORDER BY nom, lib_matiere;';*/
-	$req = 'SELECT *
-			FROM moyenne;';
+			ORDER BY nom, lib_matiere;';
+	/*$req = 'SELECT *
+			FROM moyenne;';*/
 
 	try{
 		//Préparer et exécuter la requête
@@ -87,6 +87,31 @@ function getMoyenne($connexion){
 //Fonction acceptant un nb variable d'argument
 function test(... $var){
 
+}
+
+//Insertion de ligne dans table moyenne
+function insertLineMoy($value){
+	foreach ($value as $key2 => $value2) {
+		echo '<script>';
+
+		echo '	var td = document.createElement("td");
+				td.innerHTML = "'.$value2.'";
+				tr.appendChild(td);';
+
+
+		echo '</script>';
+	}
+}
+
+//Set style de la ligne en fonction de la valeur de la moyenne
+function setStyle($moy){
+	if($moy>=14){
+		echo 'tr.setAttribute("style", "background-color: #60FF58;");';
+	}else if($moy>=10){
+		echo 'tr.setAttribute("style", "background-color: #FFFC58;");';
+	}else if($moy<10){
+		echo 'tr.setAttribute("style", "background-color: #FF5858;");';
+	}
 }
 
 
