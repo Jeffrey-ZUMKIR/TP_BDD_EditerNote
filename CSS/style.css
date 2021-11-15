@@ -17,15 +17,15 @@ table{
 	box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.5);
 }
 
-tbody tr:nth-child(odd){
+table#tabNote tbody tr:nth-child(odd){
 	background-color: lightgreen;
 }
 
-tbody tr:nth-child(even){
+table#tabNote tbody tr:nth-child(even){
 	background-color: lightblue;
 }
 
-tbody tr:hover{
+table#tabNote tbody tr:hover{
 	background-color: white;
 }
 

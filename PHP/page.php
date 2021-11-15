@@ -90,13 +90,105 @@
 	?>
 </div>
 
-<div class="column">
+<div id="div2" class="column">
+
+	<script type="text/javascript">
+		//Get div
+		var div2 = document.getElementById("div2");
+
+		//Create table
+		var table = document.createElement("table");
+		table.setAttribute("id","tabMoy");
+		div2.appendChild(table);
+
+		//Create thead
+		var thead = document.createElement("thead");
+		table.appendChild(thead);
+
+		//Create tr
+		var tr = document.createElement("tr");
+		thead.appendChild(tr);
+
+		//Create all th
+		var th = document.createElement("th");
+		th.setAttribute("class", "colMat");
+		th.innerHTML = "Matière";
+		tr.appendChild(th);
+
+		var th = document.createElement("th");
+		th.setAttribute("class", "colEtud");
+		th.setAttribute("colspan", "2");
+		th.innerHTML = "Etudiant";
+		tr.appendChild(th);
+
+		var th = document.createElement("th");
+		th.setAttribute("class", "colMoy");
+		th.innerHTML = "Moyenne";
+		tr.appendChild(th);
+
+		var tbody = document.createElement("tbody");
+		table.appendChild(tbody);
+
+	</script>
+	<?php
+		$moy = getMoyenne($connexion);
+
+		if(isset($moy) and !empty($note)){
+			//Affiche chaque note des élèves
+			foreach ($moy as $key => $value) {
+
+				echo '<script>';
+
+				echo '	var tr = document.createElement("tr");
+						tbody.appendChild(tr);';
+
+				if($value["moyenne"]>=14){
+					echo 'tr.setAttribute("style", "background-color: #60FF58;");';
+				}else if($value["moyenne"]>=10){
+					echo 'tr.setAttribute("style", "background-color: #FFFC58;");';
+				}else if($value["moyenne"]<10){
+					echo 'tr.setAttribute("style", "background-color: #FF5858;");';
+				}
+				
+
+				echo '</script>';
+
+				foreach ($value as $key2 => $value2) {
+					echo '<script>';
+
+					echo '	var td = document.createElement("td");
+							td.innerHTML = "'.$value2.'";
+							tr.appendChild(td);';
+
+
+					echo '</script>';
+				}
+			}
+			
+		//Si pas de valeur ou n'existe pas
+		}else{
+			echo '<script>
+					var tr = document.createElement("tr");
+					var td = document.createElement("td");
+					td.setAttribute("colspan", "4");
+					td.innerHTML = "No data";
+					tr.appendChild(td);
+					tbody.appendChild(tr);
+				</script>';
+		}
+
+
+
+
+		echo '';
+
+	?>
 
 	<?php
 		$moy = getMoyenne($connexion);
 		
 		//Tableau des moyennes
-		echo '<table id="tabMoy">
+		/*echo '<table id="tabMoy">
 				<thead>
 					<tr>
 						<th>Matière</th>
@@ -126,7 +218,7 @@
 
 
 		echo '	</tbody>
-			</table>';
+			</table>';*/
 
 	?>
 </div>

@@ -84,5 +84,10 @@ function getMoyenne($connexion){
 	}
 }
 
+//Fonction acceptant un nb variable d'argument
+function test(... $var){
+
+}
+
 
 ?>
